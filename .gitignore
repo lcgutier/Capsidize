@@ -172,3 +172,25 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Ignore node_modules folder for GitHub (package it during build)
+node_modules
+
+.DS_Store
+
+# Ignore model directories for GitHub, but include them in the app
+sam_models/
+avg_capsids/
+ia_models/
+classifyingIA
+normalizing
+patching
+updating
+segmenting_bundle/
+dist/
+build/
+
+# Ignore other irrelevant build artifacts
+*.log
+*.bak
+*.tmp

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width initial-scale=1.0">
+        <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge">  -->
+        <title>Capsid Detector App</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="linkers/backToFront.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <header>
+                <h1>Capsidize</h1>
+                <nav id="nav-bar">
+                    <ul>
+                        <li class="btn"><a href="#image-upload">Upload Image</a></li>
+                        <li class="btn"><a href="#pred-stats">Detection Stats</a></li>
+                        <li class="btn"><a href="#img-results">Image Results</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <main>
+                <div id="image-upload">
+                    <h2>Upload an Image</h2>
+                    <div class="input-box">
+                        <p>Upload an image to detect the capsids</p>
+                        <div class="input-area">
+                            <label id="file-upload-btn" for="img-file" class="btn">Select Images</label>
+                            <input id="img-file" type="file"  accept="image/*" placeholder="Select Images" multiple />
+                            <button class="btn" id="predict-btn" onclick="normalizeImages()">Detect</button>
+                        </div>
+                        <p id="img-paths"></p>
+                        <p id="detection-status"></p>
+                    </div>
+                </div>
+                <div class="pred-stats" id="pred-stats">
+                    <h2>Prediction Statistics</h2>
+                    <div class="stats-box">
+                        <div class="stat-vals">
+                            <p>Total Capsids: <span id="num-total-capsids">0</span></p>
+                            <p>Full Capsids: <span id="num-full-capsids">0</span></p>
+                            <p>Partial Capsids: <span id="num-partial-capsids">0</span></p>
+                            <p>Empty Capsids: <span id="num-empty-capsids">0</span></p>
+                            <p>Viable Fraction: <span id="viable-fraction">0</span></p>
+                            <p>Area Covered by Aggregation: <span id="aggregation-value">0</span></p>
+                            <p>Area Covered by Ice: <span id="ice-value">0</span></p>
+                        </div>
+                        <div class="stats-chart" id="stats-chart"></div>
+                    </div>
+                </div>
+                <div id="img-results">
+                    <h2>Results</h2>
+                    <div id="result">
+                        <div class="loader-info">
+                            <div class="loader" id="loader"></div>
+                            <p id="loader-text"></p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script>
+            document.getElementById('img-file').addEventListener('change', () => {
+                electron.inputImages();
+            });
+        </script>
+    </body>
+    
+</html>
+
