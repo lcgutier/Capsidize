@@ -1,0 +1,22 @@
+{
+    "name": "capsidize-gui",
+    "version": "1.0.0",
+    "main": "main.js",
+    "devDependencies": {
+        "electron": "^31.3.1",
+        "electron-installer-dmg": "^5.0.1",
+        "electron-packager": "^17.1.2"
+    },
+    "scripts": {
+        "start": "electron --inspect=5858 .",
+        "devwatch": "npx electronmon --trace-warnings .",
+        "build": "electron-packager . Capsidize --platform=darwin --arch=x64 --overwrite --out=../release --prune=true --extra-resource=\"../engine\" --ignore=\".*\\.py$\" --ignore=\".*\\.spec$\" --ignore=\".*build.*\" --icon=capsidize_logo.icns",
+        "installer": "electron-installer-dmg ../release/Capsidize-darwin-x64/Capsidize.app Capsidize-Installer --overwrite --icon=capsidize_logo.icns"
+    },
+    "repository": "https://github.com/lcgutier/Capsidize.git",
+    "author": "Lilianna Gutierrez",
+    "license": "GPL-3.0",
+    "dependencies": {
+        "python-shell": "^5.0.0"
+    }
+}

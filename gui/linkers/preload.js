@@ -50,18 +50,18 @@ contextBridge.exposeInMainWorld('electron', {
 
         console.log("Selected files:", selectedFiles);
 
-        // // Define the path to the Python script
-        // const scriptPath = path.join(__dirname, '../../engine/normalizing.py');
-        
-        // // Spawn a child process to run the Python script with the selected files as arguments
-        // const pythonProcess1 = spawn('python', [scriptPath, ...selectedFiles]);
-
         // Define the path to the Python script
-        const scriptPath = path.join(__dirname, '../../engine/normalizing');
-        console.log("Script path:", scriptPath);
-
+        const scriptPath = path.join(__dirname, '../../engine/normalizing.py');
+        
         // Spawn a child process to run the Python script with the selected files as arguments
-        const pythonProcess1 = execFile(scriptPath, [...selectedFiles]);
+        const pythonProcess1 = spawn('python', [scriptPath, ...selectedFiles]);
+
+        // // Define the path to the Python script
+        // const scriptPath = path.join(__dirname, '../../engine/normalizing');
+        // console.log("Script path:", scriptPath);
+
+        // // Spawn a child process to run the Python script with the selected files as arguments
+        // const pythonProcess1 = execFile(scriptPath, [...selectedFiles]);
 
         pythonProcess1.stdout.on('data', (data) => {
             const output = data.toString().trim();
@@ -109,12 +109,11 @@ contextBridge.exposeInMainWorld('electron', {
             console.log("After Process 1 Segmenting inputs:", segmentingInputs);
             console.log("After Process 1 Patching inputs:", patchingInputs);
 
-            // segmentingInputs = segmentingInputs.split('\n');
             // Spawn a child process to run the Python script with the data from normalizing.py as arguments into segmenting.py
-            // const scriptPath2 = path.join(__dirname, '../../engine/segmenting.py');
-            // const pythonProcess2 = spawn('python', [scriptPath2, ...segmentingInputs]);
-            const scriptPath2 = path.join(__dirname, '../../engine/segmenting_bundle/segmenting');
-            const pythonProcess2 = execFile(scriptPath2, [...segmentingInputs]);
+            const scriptPath2 = path.join(__dirname, '../../engine/segmenting.py');
+            const pythonProcess2 = spawn('python', [scriptPath2, ...segmentingInputs]);
+            // const scriptPath2 = path.join(__dirname, '../../engine/segmenting_bundle/segmenting');
+            // const pythonProcess2 = execFile(scriptPath2, [...segmentingInputs]);
 
             pythonProcess2.stdout.on('data', (data2) => {
                 const output2 = data2.toString().trim();
@@ -135,14 +134,6 @@ contextBridge.exposeInMainWorld('electron', {
                             imgElement.alt = "Segmented Image";
 
                             resultContainer.appendChild(imgElement);
-
-                        } else if (img_path2.includes('mask_areas')) {
-                            // const imgElement = document.createElement('img');
-                            // imgElement.src = `file://${img_path2}`;
-                            // console.log("Mask Area image path:",`file://${img_path2}`);
-                            // imgElement.alt = "Segmented Image";
-
-                            // predStatsContainer.appendChild(imgElement);
                         } else if (img_path2.includes('sam_results_by_image')) {
                             console.log("Sam results by image path:",`file://${img_path2}`);
                             updatingPredictionsInputs.unshift(img_path2);
@@ -171,10 +162,10 @@ contextBridge.exposeInMainWorld('electron', {
                 loaderText.style.display = 'block';
 
                 // Spawn a child process to run the Python script patching.py
-                // const scriptPath3 = path.join(__dirname, '../../engine/patching.py');
-                // const pythonProcess3 = spawn('python', [scriptPath3, ...patchingInputs]);
-                const scriptPath3 = path.join(__dirname, '../../engine/patching');
-                const pythonProcess3 = execFile(scriptPath3, [...patchingInputs]);
+                const scriptPath3 = path.join(__dirname, '../../engine/patching.py');
+                const pythonProcess3 = spawn('python', [scriptPath3, ...patchingInputs]);
+                // const scriptPath3 = path.join(__dirname, '../../engine/patching');
+                // const pythonProcess3 = execFile(scriptPath3, [...patchingInputs]);
 
                 pythonProcess3.stdout.on('data', (data3) => {
                     const output3 = data3.toString().trim();
@@ -202,11 +193,10 @@ contextBridge.exposeInMainWorld('electron', {
                     loaderText.style.display = 'block';
 
                     // Spawn a child process to run the Python script classifying.py
-                    // const scriptPath4 = path.join(__dirname, '../../engine/classifyingIA.py');
-                    // const pythonProcess4 = spawn('python', [scriptPath4, ...classifyingInputs]);
-                    // const scriptPath4 = path.join(__dirname, '../../engine/classifyingIA_bundle/classifyingIA');
-                    const scriptPath4 = path.join(__dirname, '../../engine/classifyingIA');
-                    const pythonProcess4 = execFile(scriptPath4, [...classifyingInputs]);
+                    const scriptPath4 = path.join(__dirname, '../../engine/classifyingIA.py');
+                    const pythonProcess4 = spawn('python', [scriptPath4, ...classifyingInputs]);
+                    // const scriptPath4 = path.join(__dirname, '../../engine/classifyingIA');
+                    // const pythonProcess4 = execFile(scriptPath4, [...classifyingInputs]);
 
                     pythonProcess4.stdout.on('data', (data4) => {
                         const output4 = data4.toString().trim();
@@ -258,10 +248,10 @@ contextBridge.exposeInMainWorld('electron', {
                         loaderText.style.display = 'block';
 
                         // Spawn a child process to run the Python script updating.py
-                        // const scriptPath5 = path.join(__dirname, '../../engine/updating.py');
-                        // const pythonProcess5 = spawn('python', [scriptPath5, ...updatingPredictionsInputs]);
-                        const scriptPath5 = path.join(__dirname, '../../engine/updating');
-                        const pythonProcess5 = execFile(scriptPath5, [...updatingPredictionsInputs]);
+                        const scriptPath5 = path.join(__dirname, '../../engine/updating.py');
+                        const pythonProcess5 = spawn('python', [scriptPath5, ...updatingPredictionsInputs]);
+                        // const scriptPath5 = path.join(__dirname, '../../engine/updating');
+                        // const pythonProcess5 = execFile(scriptPath5, [...updatingPredictionsInputs]);
 
                         pythonProcess5.stdout.on('data', (data5) => {
                             const output5 = data5.toString().trim();

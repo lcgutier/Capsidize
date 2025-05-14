@@ -180,8 +180,6 @@ node_modules
 
 # Ignore model directories for GitHub, but include them in the app
 sam_models/
-avg_capsids/
-ia_models/
 classifyingIA
 normalizing
 patching
