@@ -9,7 +9,7 @@ This app can be used in different ways:
 ## Option 1: Downloading the App
 This file is quite large as it was made using electron, a software developing framework that allows us to use HTML, CSS, Javascript and Python together with a clean workflow. This is the easiest option for non-coders.
 
-App Download Link: https://cmu.box.com/s/r8afk0ft8ae1eie99zg8ek0kin32gly1
+**[Download the App Here](https://cmu.box.com/s/r8afk0ft8ae1eie99zg8ek0kin32gly1)**
 
 Disclaimer: You may recieve apple security alerts. To use this app you will just need to ignore them and allow the app.
 
@@ -90,7 +90,7 @@ From there you are free to upload images and detect
 
 You will need to download the engine binaries or create them yourself using the .py files. 
 
-Engine_Binaries Download Link: https://cmu.box.com/s/la3gt3ngoy6dhsj12tmi2swel5ox6eft
+**[Download the Engine Binaries Here](https://cmu.box.com/s/la3gt3ngoy6dhsj12tmi2swel5ox6eft)**
 
 Once downloaded you can extract them into the engine folder
 
