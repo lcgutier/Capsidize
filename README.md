@@ -1,6 +1,8 @@
 # Capsidize
 ***An app for automatic labeling of AAV capsid types in Cryo-TEM images***
 
+The pipline used to train the models used in Capsidize can be found [here](https://github.com/lcgutier/capsid-eyes).
+
 This app can be used in different ways:
 
 1) **No Coding:** Downloading the .dmg for macos like any other app
